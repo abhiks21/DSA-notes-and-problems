@@ -1,0 +1,46 @@
+// ✅ Problem: Check if string `goal` is a rotation of string `s`.
+// A rotation means: shifting characters from the front to the back, maintaining the order.
+// For example, "abcde" rotated becomes "cdeab", "deabc", etc.
+
+// ✅ Correct & Optimized Approach:
+// - A rotation of a string will always be a substring of the string concatenated with itself.
+// - So, if `goal` is a rotation of `s`, then `goal` must be a substring of `s + s`.
+
+bool rotateString(string s, string goal) {
+    // First, check if both strings are of same length. If not, they can't be rotations.
+    if (s.length() != goal.length()) return false;
+
+    // Concatenate s with itself. If goal is a rotation of s, it will be a substring of s+s
+    s = s + s;
+
+    // Check if goal exists in the new string using find()
+    // `string::npos` means "not found". So if find() doesn't return npos, it means it found the substring.
+    return s.find(goal) != string::npos;
+}
+
+/*
+🔍 Explanation of key concept: string::npos
+--------------------------------------------
+- `string::npos` is a constant (usually defined as -1 or the largest possible size_t value).
+- It represents that a substring was NOT found during the find() operation.
+
+Example:
+    string str = "hello";
+    if (str.find("el") != string::npos) {
+        // "el" is found in "hello"
+    }
+
+❌ Mistake in earlier approach:
+-------------------------------
+- The initial approach was trying to simulate the rotation manually using loops.
+- It didn't account for multiple occurrences of the starting character, and assumed a match as soon as the first character of `goal` was found.
+- It also didn't handle string length mismatches or all rotation patterns.
+
+✅ Time Complexity: O(N)
+------------------------
+- N = length of string s.
+- The find operation on a string of size 2N (s + s) takes O(N) average time.
+
+✅ Space Complexity: O(N)
+-------------------------
+- Due to concatenating string s with itself, an additional O(N) space is used.
