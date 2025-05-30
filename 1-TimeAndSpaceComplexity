@@ -1,0 +1,79 @@
+/*
+Problem: 
+- Generate all subsets or permutations of a given array/vector.
+- These problems use recursive backtracking exploring all possible combinations/orders.
+
+Approach:
+- At each recursion level i:
+    * For subsets: Decide to include or exclude current element.
+    * For permutations: Choose among remaining unused elements.
+- Use backtracking to explore all paths.
+
+Key Recursion Characteristics:
+- Depth of recursion = n (size of input)
+- Branching factor varies with problem:
+    * Subsets: 2 choices per element (include/exclude) → 2 branches at each level.
+    * Permutations: At level i, (n - i) choices (remaining unused elements).
+
+Recurrence Relation:
+
+1. Subsets:
+   - Each element has 2 choices → 
+     T(n) = 2 * T(n-1)
+   - Base case: T(0) = 1
+   - Total subsets = 2^n
+   - Time complexity = O(2^n)
+
+2. Permutations:
+   - At level i, have (n - i) choices → 
+     Total number of permutations = n!
+   - Recurrence from root (i=0):
+     T(n) = n * T(n-1)
+   - Expands to n! total recursive calls
+   - Each permutation takes O(n) to build
+   - Time complexity = O(n * n!)
+
+Space Complexity:
+
+- Recursion Stack: Depth = n → O(n)
+- Temporary storage for partial solution (subset/permutation): O(n)
+- Additional data structures:
+    * For subsets: usually none or O(n)
+    * For permutations: visited array O(n) or fixed size if value range is limited
+- Output storage:
+    * Subsets: O(n * 2^n) for storing all subsets
+    * Permutations: O(n * n!) for storing all permutations
+
+Summary Table:
+
+| Problem     | Branching Factor per Level | Total Calls           | Time Complexity  | Space Complexity                    |
+|-------------|----------------------------|----------------------|------------------|-----------------------------------|
+| Subsets     | 2                          | 2^n                  | O(2^n)           | O(n) stack + O(n*2^n) output      |
+| Permutations| n, n-1, ..., 1             | n!                   | O(n * n!)        | O(n) stack + O(n * n!) output     |
+
+Important Notes:
+- Recurrence relations are written from the root (level 0).
+- The local branching factor at level i can vary, but total calls come from multiplying branching factors at all levels.
+- Backtracking uses O(n) space for call stack and current solution.
+- Output storage dominates space if all solutions are stored.
+
+Example:
+
+Subsets of [1,2,3]:
+
+- Recursion tree height = 3
+- Each node has 2 children (include/exclude)
+- Total leaf nodes = 2^3 = 8 subsets
+
+Permutations of [1,2,3]:
+
+- Recursion tree height = 3
+- Root has 3 children (choices for first element)
+- Next level nodes have 2 children each (choices for second element)
+- Leaf nodes = 3! = 6 permutations
+
+Conclusion:
+- Understanding the branching factor and recursion depth is key to formulating recurrence.
+- Use recurrence to find total calls and multiply by per-call cost to get time.
+- Always consider stack, temp data, and output when calculating space.
+*/
