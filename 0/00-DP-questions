@@ -1,0 +1,62 @@
+/*===========================================================================*/
+### 🎒 0-1 Knapsack Pattern Problems
+/*===========================================================================*/
+1. ✅ **Subset Sum Problem**
+2. ✅ **Equal Sum Partition**
+3. ✅ **Count of Subsets with Given Sum**
+4. ✅ **Minimum Subset Sum Difference**
+5. ✅ **Target Sum**
+6. ✅ **Number of Subsets with Given Difference**
+
+
+/*===========================================================================*/
+Unbounded Knapsack Related Problems (Repetition of items allowed)
+/*===========================================================================*/
+
+1. Rod Cutting
+2. Coin Change I (Maximum number of ways)
+3. Coin Change II (Minimum number of coins)
+4. Maximum Ribbon Cut
+
+/*===========================================================================*/
+### 🧠 LCS-Based Dynamic Programming Problems
+/*===========================================================================*/
+1. ✅ **Longest Common Substring**
+2. ✅ **Print LCS**
+3. ✅ **Shortest Common Supersequence**
+4. ✅ **Print Shortest Common Supersequence (SCS)**
+5. ✅ **Minimum number of insertions and deletions to convert string a → b**
+6. ✅ **Longest Repeating Subsequence**
+7. ✅ **Length of the longest subsequence of a that is a subsequence in b**
+8. ✅ **Subsequence Pattern Matching**
+9. ✅ **Count how many times a appears as subsequence in b**
+10. ✅ **Longest Palindromic Subsequence**
+11. ✅ **Longest Palindromic Substring**
+12. ✅ **Count of Palindromic Substrings**
+13. ✅ **Minimum number of deletions in a string to make it a palindrome**
+14. ✅ **Minimum number of insertions in a string to make it a palindrome**
+
+/*===========================================================================*/
+Matrix Chain Multiplication Problems
+/*===========================================================================*/
+1. MCM (Matrix Chain Multiplication)
+2. Printing MCM
+3. Evaluate Expression to True / Boolean Parenthesization
+4. Min/Max Value of an Expression
+5. Palindrome Partitioning
+6. Scramble String
+7. Egg Dropping Problem
+
+/*===========================================================================*/
+DP on Trees
+/*===========================================================================*/
+1. General Syntax
+2. How DP can be applied to trees (Identification)
+3. Diameter of a Binary Tree
+
+4. Maximum Path Sum from any node to any node
+
+5. Maximum Path Sum from leaf to leaf
+
+6. Diameter of N-ary Tree
+
