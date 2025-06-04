@@ -2,7 +2,10 @@
 🧩 Problem: Longest String Chain (Leetcode 1048)
 
 🔗 Description:
-Given a list of words, each word can be a part of a chain if by removing exactly one character from it, the resulting word is also present in the list and part of a chain. The goal is to find the length of the longest possible chain.
+Given a list of words, each word can be a part of a chain if by
+removing exactly one character from it,the resulting word is also
+present in the list and part of a chain. The goal is to find the
+length of the longest possible chain.
 
 📥 Input:
 vector<string> words
@@ -14,7 +17,8 @@ int -> maximum length of word chain
 🧠 Approach: Top-down DP with Recursion + Memoization
 
 1. Sort the words by length to ensure smaller words come before longer ones.
-2. For each word, try to include it in the chain if it is one character longer than a previously selected word and only differs by one character.
+2. For each word, try to include it in the chain if it is one character longer
+    than a previously selected word and only differs by one character.
 3. Use recursion with memoization to explore all valid chains.
 4. Use a helper `check()` to verify if a word can follow the previous one in the chain.
 
