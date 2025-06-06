@@ -25,7 +25,7 @@ Generate all DISTINCT permutations without duplicates.
 - Extra memory used by set
 - Slower due to logN insertions and post-processing
 
-🧠 Code:
+🧠 Code:*/
     void solve(vector<int>& nums, set<vector<int>>& st, int i) {
         if (i == nums.size()) {
             st.insert(nums);
@@ -45,7 +45,7 @@ Generate all DISTINCT permutations without duplicates.
         for (auto& p : st) ans.push_back(p);
         return ans;
     }
-
+/*
 ⏱ Time Complexity: O(n! * n log(n!))
 🧠 Space Complexity: O(n! + n)
 
@@ -57,7 +57,7 @@ Generate all DISTINCT permutations without duplicates.
 - Use an unordered_set<int> at each recursion level to track values already used at that level
 - Prevents generating duplicate branches early
 
-🧠 Final Code:
+🧠 Final Code:*/
     void solve(vector<int>& nums, vector<vector<int>>& ans, int i) {
         if (i == nums.size()) {
             ans.push_back(nums);
@@ -78,7 +78,7 @@ Generate all DISTINCT permutations without duplicates.
         solve(nums, ans, 0);
         return ans;
     }
-
+/*
 ⏱ Time Complexity: O(n! * n) (pruned by skipping duplicates)
 🧠 Space Complexity: O(n) (stack) + O(n) seen set per call
 
