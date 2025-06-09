@@ -25,7 +25,7 @@ Given a binary tree, print all the elements diagonally.
 
 --------------------------------------------------
 
-✅ Code:
+✅ Code:*/
 class Solution {
   public:
     void solve(int d, Node* root, map<int, vector<int>> &mp){
@@ -46,7 +46,7 @@ class Solution {
         return ans;
     }
 };
-
+/*
 --------------------------------------------------
 
 ⏱️ Time Complexity: O(n)
