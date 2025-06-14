@@ -1,4 +1,4 @@
-# 🔁 Cycle Detection in Directed Graph using DFS
+/*# 🔁 Cycle Detection in Directed Graph using DFS
 
 ---
 
@@ -49,46 +49,55 @@ Each node and edge is visited exactly once.
 
 ## ✅ Final Code:
 
-```cpp
-class Solution {
-public:
-    // DFS function to detect cycle
-    bool dfs(int node, vector<int>& path, vector<int>& vis, vector<vector<int>>& adj) {
-        vis[node] = 1;
-        path[node] = 1;
+```cpp*/
+ class Solution {
+  public:
+  
+  // DFS function to detect a cycle
+  int dfs(vector<int>& path, int node, vector<vector<int>>& adj, vector<int>& vis) {
+      vis[node] = 1;       // Mark the node as visited globally
+      path[node]++;        // Mark the node in the current DFS path
+      
+      int size = adj[node].size();  // Number of neighbors
+      
+      for (int i = 0; i < size; i++) {
+          int neigh = adj[node][i];  // Get each neighbor
 
-        for (int neigh : adj[node]) {
-            if (!vis[neigh]) {
-                if (dfs(neigh, path, vis, adj)) return true;
-            } else if (path[neigh]) {
-                return true; // back edge → cycle
-            }
-        }
+          // If neighbor is already in the current path → cycle found
+          if (path[neigh]) return 1;
 
-        path[node] = 0; // backtrack
-        return false;
-    }
+          // If neighbor is not visited, do DFS on it
+          if (!vis[neigh] && dfs(path, neigh, adj, vis)) return 1;
+      }
 
-    // Main function
-    bool isCyclic(int V, vector<vector<int>> &edges) {
-        vector<vector<int>> adj(V);
-        for (auto& edge : edges) {
-            adj[edge[0]].push_back(edge[1]);
-        }
+      path[node]--;  // 🔁 Backtrack: remove node from current DFS path
+      return 0;      // No cycle found in this path
+  }
 
-        vector<int> vis(V, 0), path(V, 0);
+  // Main function to check if the graph has a cycle
+  bool isCyclic(int V, vector<vector<int>> &edges) {
+      int E = edges.size();
+      
+      // Adjacency list
+      vector<vector<int>> adj(V);
+      for (int i = 0; i < E; i++) {
+          int u = edges[i][0];
+          int v = edges[i][1];
+          adj[u].push_back(v);  // Directed edge from u to v
+      }
 
-        for (int i = 0; i < V; i++) {
-            if (!vis[i]) {
-                if (dfs(i, path, vis, adj)) return true;
-            }
-        }
+      vector<int> path(V, 0);  // To track the current DFS path
+      vector<int> vis(V, 0);   // To mark visited nodes
 
-        return false;
-    }
+      // Check every node (in case of disconnected components)
+      for (int i = 0; i < V; i++) {
+          if (!vis[i]) {
+              if (dfs(path, i, adj, vis)) return 1;  // Cycle detected
+          }
+      }
+
+      return 0;  // No cycle in any component
+  }
 };
-```
 
----
 
-Let me know if you want a note for **undirected graphs** or **BFS-based (Kahn's Algorithm)** approach as well!
