@@ -1,0 +1,33 @@
+🔰 KAHN'S ALGORITHM (Topological Sort using In-Degree)
+
+▶️ Purpose:
+Used to perform **topological sorting** of a **Directed Acyclic Graph (DAG)** and detect **cycles** in directed graphs.
+
+✅ When to Use:
+- You have **dependencies** (i.e., "Do A before B").
+- Need to find a **valid order** to complete tasks or detect if **ordering is impossible** (due to cycle).
+
+🧠 Key Idea:
+- Count the **in-degree** (incoming edges) of all nodes.
+- Start with nodes having **in-degree 0** (no dependencies).
+- Remove them and reduce the in-degree of their neighbors.
+- If at any point no nodes with in-degree 0 are left and some nodes still have non-zero in-degree → there's a **cycle**.
+
+🧮 Time Complexity:
+- **O(V + E)**, where V = vertices, E = edges
+
+🗃️ Space Complexity:
+- **O(V + E)** for adjacency list and queue
+
+📌 Applications (Real-Life):
+- Course scheduling (prerequisites)
+- Task/job scheduling
+- Build systems (e.g., Makefiles)
+- Software package managers (npm, pip)
+- Spreadsheet formula evaluation
+
+🛑 Cycle Detection:
+- If the number of nodes processed < V → **cycle exists**
+
+👀 Remember:
+Think of Kahn’s Algorithm whenever you face **“what can be done first”** type problems with **dependencies** in a **directed graph**.
