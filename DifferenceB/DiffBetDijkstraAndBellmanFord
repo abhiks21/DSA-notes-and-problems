@@ -1,0 +1,46 @@
+🧾 **Dijkstra vs Bellman-Ford — Quick Comparison**
+
+---
+
+### ✅ **Use Case**
+- **Dijkstra**: Shortest path (only **non-negative** weights)
+- **Bellman-Ford**: Shortest path (works with **negative weights**)
+
+---
+
+### ⚙️ **Time Complexity**
+- **Dijkstra (with heap)**: O((V + E) log V)
+- **Bellman-Ford**: O(V × E)
+
+---
+
+### 🔍 **Cycle Handling**
+- **Dijkstra**: ❌ Fails with negative weights
+- **Bellman-Ford**: ✅ Detects **negative weight cycles**
+
+---
+
+### 📊 **Approach**
+- **Dijkstra**: Greedy, uses **priority queue**
+- **Bellman-Ford**: Dynamic Programming, **relaxes all edges V−1 times**
+
+---
+
+### 🧠 **When to Use**
+| Scenario                            | Use           |
+|-------------------------------------|----------------|
+| All weights ≥ 0                     | Dijkstra       |
+| Contains negative weights           | Bellman-Ford   |
+| Need to detect negative cycle       | Bellman-Ford   |
+
+---
+
+✅ **Summary Table:**
+
+| Feature                 | Dijkstra | Bellman-Ford |
+|------------------------|----------|--------------|
+| Negative Weights        | ❌       | ✅           |
+| Negative Cycle Detect   | ❌       | ✅           |
+| Faster on Sparse Graphs | ✅       | ❌           |
+| Greedy Approach         | ✅       | ❌           |
+
