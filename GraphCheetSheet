@@ -1,0 +1,19 @@
+📘 GRAPH ALGORITHM DECISION-MAKING TABLE
+
+| Problem Type              | Graph Type            | Preferred Algorithm                | Reason / Notes                                      |
+|---------------------------|------------------------|-------------------------------------|-----------------------------------------------------|
+| Shortest Path             | Unweighted             | BFS                                 | Level-wise traversal gives shortest path            |
+| Shortest Path             | Weighted (no neg)      | Dijkstra                            | Uses min-heap to always take the minimum cost edge  |
+| Shortest Path             | Weighted (with neg)    | Bellman-Ford                        | Handles negative weights, can detect negative cycle |
+| All-Pairs Shortest Path   | Weighted               | Floyd-Warshall                      | Dynamic programming; handles negative weights       |
+| Cycle Detection           | Undirected             | DFS with parent check               | Detect back-edge without needing path tracking      |
+| Cycle Detection           | Directed               | DFS with path array / Toposort      | Back-edge detected via path array or indegree count |
+| Topological Sort          | Directed Acyclic Graph | Kahn’s Algorithm (BFS) / DFS        | Only valid for DAGs; fails if cycle exists          |
+| Minimum Spanning Tree     | Undirected Weighted    | Prim’s (PQ + visited) / Kruskal’s   | Finds min total weight to connect all nodes         |
+
+🧠 KEY INSIGHTS:
+- In **directed graphs**, cycles are subtle — need *path tracking*.
+- In **undirected graphs**, cycles can be found with just *parent checking* in DFS.
+- **BFS is optimal for shortest path** in unweighted graphs.
+- **Toposort** can help with cycle detection and ordering in DAGs.
+- **MST algorithms** are always for **undirected weighted** graphs.
