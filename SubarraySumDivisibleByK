@@ -1,0 +1,64 @@
+// ✅ PROBLEM: Count Subarrays with Sum Divisible by K
+
+/*
+🧠 Description:
+Given an integer array `nums` and an integer `k`, return the number of subarrays whose sum is divisible by `k`.
+
+🧪 Example:
+Input: nums = [4,5,0,-2,-3,1], k = 5  
+Output: 7
+
+Explanation:
+Subarrays: [5], [0], [-2, -3], [5, 0], [0, -2, -3], [4, 5, 0, -2, -3], [4, 5, 0, -2, -3, 1]
+
+---
+
+🧩 Approach:
+- Use prefix sum and store mod k of sum in a map.
+- If same mod value has appeared before, all such subarrays are divisible by `k`.
+
+📦 Data Structures:
+- unordered_map<int, int> → to store frequency of prefix sum mod k
+
+---
+
+🧱 STEPS:
+1. Initialize `sum = 0`, `count = 0`, and `mp[0] = 1`
+2. Loop through array:
+   - Add to `sum`
+   - Calculate `mod = ((sum % k) + k) % k` to handle negative values
+   - Add `mp[mod]` to count
+   - Increment `mp[mod]`
+
+---
+
+✅ Code:
+*/
+
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        unordered_map<int, int> mp;
+        mp[0] = 1;
+        int sum = 0, count = 0;
+
+        for (int num : nums) {
+            sum += num;
+            int mod = ((sum % k) + k) % k;
+            count += mp[mod];
+            mp[mod]++;
+        }
+
+        return count;
+    }
+};
+
+/*
+🕒 Time Complexity: O(n)
+📦 Space Complexity: O(k) (worst-case map size)
+
+🔥 Key Concepts:
+- Prefix sum
+- Modulo normalization: ((x % k) + k) % k
+- Frequencies of mod values to count valid subarrays
+*/
