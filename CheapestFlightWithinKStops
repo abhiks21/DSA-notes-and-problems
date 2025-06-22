@@ -1,0 +1,96 @@
+// ✅ PROBLEM: Cheapest Flights Within K Stops (Leetcode 787)
+
+/*
+🧠 Description:
+You are given `n` cities and a list of flights. Each flight is [from, to, cost].
+Return the cheapest price from src to dst with at most `k` stops.
+Return -1 if no such route exists.
+
+---
+
+🧪 Example:
+Input:
+n = 4,
+flights = [[0,1,100],[1,2,100],[2,3,100],[0,3,500]],
+src = 0,
+dst = 3,
+k = 1
+
+Output: 500
+
+Explanation:
+- [0 -> 3] costs 500 (0 stops)
+- [0 -> 1 -> 2 -> 3] costs 300 but has 3 stops → exceeds k=1
+
+---
+
+❌ Common MISTAKES:
+1. Using `price[]` to prune paths — incorrect for this problem.
+2. Forgetting to track stops per path — leads to wrong answers.
+3. Adding incorrect edge weights in adjacency list.
+4. Not pruning worse paths → causes TLE.
+
+---
+
+✅ APPROACH:
+- Use Dijkstra-style BFS with priority queue.
+- Keep track of cost and stops per path.
+- Only allow pushing to queue if stops ≤ k.
+- Use `minStops[]` to avoid reprocessing worse paths.
+
+---
+
+🕒 Time Complexity: O(E * log V) (practically better due to pruning)
+📦 Space Complexity: O(n + E)
+
+✅ FINAL CODE (with inline comments):
+*/
+
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        // Adjacency list to store graph: {destination, cost}
+        vector<vector<pair<int, int>>> adj(n);
+        for (auto& flight : flights) {
+            int u = flight[0], v = flight[1], wt = flight[2];
+            adj[u].push_back({v, wt});
+        }
+
+        // Min-heap: {total cost so far, current node, stops used}
+        priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<>> pq;
+        pq.push({0, src, 0});
+
+        // Track minimum stops used to reach each node
+        vector<int> minStops(n, INT_MAX);
+
+        while (!pq.empty()) {
+            auto [cost, node, stops] = pq.top();
+            pq.pop();
+
+            // If destination is reached, return total cost
+            if (node == dst) return cost;
+
+            // If we've already used more stops than allowed, or seen better, skip
+            if (stops > k || stops > minStops[node]) continue;
+
+            // Update the minimum stops used to reach this node
+            minStops[node] = stops;
+
+            // Traverse all neighbors
+            for (auto& [neigh, wt] : adj[node]) {
+                // Push neighbor with updated cost and stop count
+                pq.push({cost + wt, neigh, stops + 1});
+            }
+        }
+
+        // If destination is not reachable within k stops
+        return -1;
+    }
+};
+
+/*
+🔥 TAKEAWAYS:
+- Use (cost, node, stops) in PQ for this problem (not just cost).
+- Don't block higher cost paths if they use fewer stops.
+- Use minStops[] to avoid revisiting worse paths (pruning).
+*/
